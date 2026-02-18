@@ -23,7 +23,7 @@ const ProfileEditModal = ({ user, onClose, onUpdate }) => {
       if (password) updateData.password = password;
 
       // Ensure this endpoint matches your backend route
-      const { data } = await API.put('/user/profile', updateData);
+      const { data } = await API.put('api/user/profile', updateData);
       
       onUpdate(data);
       toast.success('Profile updated successfully');
