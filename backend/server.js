@@ -34,28 +34,21 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
-const cors = require("cors");
-
 const allowedOrigins = [
-  "http://localhost:3000",
-  process.env.CLIENT_URL,
+  'http://localhost:3000',
+  process.env.CLIENT_URL
 ];
 
-const corsOptions = {
+app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("CORS not allowed"));
+      callback(new Error('CORS not allowed'));
     }
   },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));   // ⭐ important for PUT preflight
+  credentials: true
+}));
 
 
 app.use(express.json());
