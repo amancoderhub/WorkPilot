@@ -34,7 +34,7 @@ const Profile = () => {
 
     setLoading(true);
     try {
-      const { data } = await API.put('api/user/profile', payload);
+      const { data } = await API.put('/api/user/profile', payload);
       updateUser(data);
       setSuccess('Profile updated successfully! ✅');
       setForm(f => ({ ...f, password: '', confirmPassword: '' }));
