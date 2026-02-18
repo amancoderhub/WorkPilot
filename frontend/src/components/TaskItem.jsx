@@ -6,7 +6,7 @@ const TaskItem = ({ task, onTaskDeleted, onTaskUpdated, onEdit }) => {
   const onDelete = async () => {
     if (window.confirm('Are you sure you want to delete this task?')) {
       try {
-        await API.delete(`api/tasks/${task._id}`);
+        await API.delete(`/api/tasks/${task._id}`);
         onTaskDeleted(task._id);
         toast.success('Task deleted');
       } catch (error) {
