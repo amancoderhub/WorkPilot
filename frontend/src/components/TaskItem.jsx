@@ -6,7 +6,7 @@ const TaskItem = ({ task, onTaskDeleted, onTaskUpdated, onEdit }) => {
   const onDelete = async () => {
     if (window.confirm('Are you sure you want to delete this task?')) {
       try {
-        await API.delete(`/tasks/${task._id}`);
+        await API.delete(`api/tasks/${task._id}`);
         onTaskDeleted(task._id);
         toast.success('Task deleted');
       } catch (error) {
@@ -18,7 +18,7 @@ const TaskItem = ({ task, onTaskDeleted, onTaskUpdated, onEdit }) => {
   const onToggleStatus = async () => {
     try {
       const newStatus = task.status === 'done' ? 'todo' : 'done';
-      const { data } = await API.put(`/tasks/${task._id}`, {
+      const { data } = await API.put(`api/tasks/${task._id}`, {
         status: newStatus,
       });
       onTaskUpdated(data);
