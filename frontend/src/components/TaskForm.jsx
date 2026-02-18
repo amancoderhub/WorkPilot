@@ -33,13 +33,13 @@ const TaskForm = ({ onTaskAdded, onTaskUpdated, editingTask, setEditingTask }) =
     try {
       if (editingTask) {
         // Update existing task
-        const { data } = await API.put(`/tasks/${editingTask._id}`, { title, description });
+        const { data } = await API.put(`api/tasks/${editingTask._id}`, { title, description });
         onTaskUpdated(data);
         toast.success('Task updated successfully');
         onCancel();
       } else {
         // Create new task
-        const { data } = await API.post('/tasks', { title, description });
+        const { data } = await API.post('api/tasks', { title, description });
         onTaskAdded(data);
         setTitle('');
         setDescription('');
