@@ -18,7 +18,7 @@ const TaskItem = ({ task, onTaskDeleted, onTaskUpdated, onEdit }) => {
   const onToggleStatus = async () => {
     try {
       const newStatus = task.status === 'done' ? 'todo' : 'done';
-      const { data } = await API.put(`api/tasks/${task._id}`, {
+      const { data } = await API.put(`/api/tasks/${task._id}`, {
         status: newStatus,
       });
       onTaskUpdated(data);
