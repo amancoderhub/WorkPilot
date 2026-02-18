@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://workpilot-wfy0.onrender.com',
 });
 
 // Add a request interceptor to include the token in headers
