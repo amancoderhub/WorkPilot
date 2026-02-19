@@ -36,10 +36,10 @@ app.use('/api', limiter);
 
 const allowedOrigins = [
   'http://localhost:3000',
-  process.env.CLIENT_URL
+  process.env.CLIENT_URL,
 ];
 
-app.use(cors({
+const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -47,8 +47,14 @@ app.use(cors({
       callback(new Error('CORS not allowed'));
     }
   },
-  credentials: true
-}));
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],   // ⭐ allow PUT
+  allowedHeaders: ['Content-Type', 'Authorization'],      // ⭐ allow JWT
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));   
+
 
 
 app.use(express.json());
